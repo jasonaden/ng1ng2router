@@ -2,12 +2,11 @@
  * This file defines the root module of the Angular 2 of the application.
  */
 
-// import angular2
+// import Angular
 import {NgModule, Component} from '@angular/core';
 import {RouterModule, UrlHandlingStrategy} from '@angular/router';
 import {BrowserModule} from '@angular/platform-browser';
 import {UpgradeModule} from '@angular/upgrade/static';
-import {RouterUpgradeInitializer} from '@angular/router/upgrade';
 
 // import app modules
 import {MessagesNgModule} from './messages';
@@ -15,9 +14,13 @@ import {MenuNgModule} from './menu';
 import {SettingsNgModule} from './settings';
 
 // This URL handling strategy is custom and application-specific.
-// Using it we can tell the Angular 2 router to handle only URL starting with settings.
+// Using it we can tell the Angular router to handle only URL starting with settings.
 export class Ng1Ng2UrlHandlingStrategy implements UrlHandlingStrategy {
-  shouldProcessUrl(url) { return url.toString().startsWith("/settings"); }
+  shouldProcessUrl(url) {
+    // Only `/settings/*` routes are handled by Angular, other are still handled by AngularJS
+    return url.toString().startsWith("/settings");
+  }
+
   extract(url) { return url; }
   merge(url, whole) { return url; }
 }

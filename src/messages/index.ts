@@ -1,5 +1,5 @@
-// This module is in the midst of transitiong from Angular 1 to Angular 2.
-// We migrated MessageTextCmp to Angular2.
+// This module is in the midst of transitioning from AngularJS to Angular.
+// We migrated MessageTextCmp to Angular.
 import * as angular from 'angular';
 import {NgModule} from '@angular/core';
 import {UpgradeModule, downgradeComponent} from '@angular/upgrade/static';
@@ -35,7 +35,7 @@ export function exportRepository(m: UpgradeModule): Repository {
 })
 export class MessagesNgModule {}
 
-// components migrated to angular 2 should be downgraded here
+// components migrated to Angular should be downgraded here
 MessagesModule.directive('messageText', <any>downgradeComponent({
   component: MessageTextCmp,
   inputs: ['text']
