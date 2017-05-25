@@ -1,7 +1,7 @@
 // This module was fully migrated to Angular
 import {NgModule, Injectable, Component} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {RouterModule, Resolve} from '@angular/router';
+import {CommonModule, Location} from '@angular/common';
+import {RouterModule, Resolve, Router, ActivatedRouteSnapshot} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {SettingsCmp} from './settings_cmp';
 import {PageSizeCmp} from './page_size_cmp';
@@ -64,6 +64,15 @@ export class Tab1Cmp {}
 export class Tab2Cmp {}
 
 
+@Injectable()
+export class PageSizeResolver implements Resolve<string|null> {
+  constructor(private router: Router, private location: Location) {}
+  resolve(route: ActivatedRouteSnapshot) {
+    this.router.navigateByUrl('/messages/inbox');
+    return Promise.resolve(null);
+  }
+}
+
 @NgModule({
   imports: [
     CommonModule,
@@ -71,7 +80,7 @@ export class Tab2Cmp {}
     RouterModule.forChild([
       { path: 'settings', children: [
         { path: '', component: SettingsCmp  },
-        { path: 'pagesize', component: PageSizeCmp}
+        { path: 'pagesize', component: PageSizeCmp, resolve: {'pageSize': PageSizeResolver}}
       ] },
 
       {path: 'tabs', component: TabsCmp, children: [
@@ -92,6 +101,7 @@ export class Tab2Cmp {}
   ],
    providers: [
      TabResolver,
+     PageSizeResolver,
      {provide: TabService, useFactory: getTabService, deps: ['$injector']},
    ]
 
