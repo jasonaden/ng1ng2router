@@ -5,6 +5,7 @@ export const MenuCmp = {
       <li><a href="/messages/inbox">Inbox</a></li>
       <li><a href="/messages/draft">Drafts</a></li>
       <li><a href="/settings">Settings</a></li>
+      <li><a href="/tabs">Tabs</a></li>
     </ul>
   `
 };

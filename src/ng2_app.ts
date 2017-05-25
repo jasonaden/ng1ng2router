@@ -18,7 +18,7 @@ import {SettingsNgModule} from './settings';
 export class Ng1Ng2UrlHandlingStrategy implements UrlHandlingStrategy {
   shouldProcessUrl(url) {
     // Only `/settings/*` routes are handled by Angular, other are still handled by AngularJS
-    return url.toString().startsWith("/settings");
+    return url.toString().startsWith("/settings") || url.toString().startsWith("/tabs");
   }
 
   extract(url) { return url; }

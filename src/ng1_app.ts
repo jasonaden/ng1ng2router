@@ -9,8 +9,14 @@ import 'angular-route'
 // import app modules
 import {MessagesModule} from './messages';
 import {MenuModule} from './menu';
+import {TabModule} from './settings'
 
-export const Ng1AppModule = angular.module('Ng1AppModule', ['ngRoute', MessagesModule.name, MenuModule.name]);
+export const Ng1AppModule = angular.module('Ng1AppModule', [
+  'ngRoute',
+  MessagesModule.name,
+  MenuModule.name,
+  TabModule.name,
+]);
 
 Ng1AppModule.config(($locationProvider) => {
   $locationProvider.html5Mode(true)

@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Repository} from '../messages/repository'
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'page-settings',
@@ -14,5 +15,7 @@ import {Repository} from '../messages/repository'
   `
 })
 export class PageSizeCmp {
-  constructor(public repository: Repository) {}
+  constructor(public repository: Repository, public route: ActivatedRoute) {
+    console.log(route.snapshot.data);
+  }
 }
