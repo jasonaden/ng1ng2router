@@ -12,13 +12,14 @@ import {UpgradeModule} from '@angular/upgrade/static';
 import {MessagesNgModule} from './messages';
 import {MenuNgModule} from './menu';
 import {SettingsNgModule} from './settings';
+import {EmptyNgModule} from './empty';
 
 // This URL handling strategy is custom and application-specific.
 // Using it we can tell the Angular router to handle only URL starting with settings.
 export class Ng1Ng2UrlHandlingStrategy implements UrlHandlingStrategy {
   shouldProcessUrl(url) {
     // Only `/settings/*` routes are handled by Angular, other are still handled by AngularJS
-    return url.toString().startsWith("/settings") || url.toString().startsWith("/tabs");
+    return url.toString().startsWith("/settings") || url.toString().startsWith("/tabs") || url.toString() === '/';
   }
 
   extract(url) { return url; }
@@ -43,10 +44,11 @@ export class RootCmp {}
     MenuNgModule,
     MessagesNgModule,
     SettingsNgModule,
+    // EmptyNgModule,
 
     // We don't need to provide any routes.
     // The router will collect all routes from all the registered modules.
-    RouterModule.forRoot([])
+    RouterModule.forRoot([], {enableTracing: true})
   ],
   providers: [
     { provide: UrlHandlingStrategy, useClass: Ng1Ng2UrlHandlingStrategy }

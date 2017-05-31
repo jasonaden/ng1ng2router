@@ -68,7 +68,7 @@ export class Tab2Cmp {}
 export class PageSizeResolver implements Resolve<string|null> {
   constructor(private router: Router, private location: Location) {}
   resolve(route: ActivatedRouteSnapshot) {
-    this.router.navigateByUrl('/messages/inbox');
+    this.router.navigateByUrl('/messages/inbox', {skipLocationChange: true});
     return Promise.resolve(null);
   }
 }

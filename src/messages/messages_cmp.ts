@@ -19,7 +19,7 @@ export const MessagesCmp = {
       </li>
     </ul>
     <a href="/settings/pagesize">Change Page Size</a>
-    <a href="/">Back</a>
+    <a href="../">Back</a>
   `,
   controller : MessagesController,
   controllerAs: 'ctrl'
