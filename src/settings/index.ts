@@ -37,7 +37,7 @@ export class TabResolver implements Resolve<string[]> {
 
 @Component({
   selector: 'tabs',
-  template: `<h3>tabs</h3>
+  template: `<h3>tabs changed!</h3>
   [<router-outlet></router-outlet>]
   <br/>
   <a routerLink="tab1">tab1</a>
@@ -63,13 +63,17 @@ export class Tab1Cmp {}
 })
 export class Tab2Cmp {}
 
+export function checkActivate() {
+  debugger;
+  return true;
+}
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     RouterModule.forChild([
-      { path: 'settings', children: [
+      { path: 'settings', canActivateChild: ['CanActivateSettingsChild'], children: [
         { path: '', component: SettingsCmp  },
         { path: 'pagesize', component: PageSizeCmp}
       ] },
@@ -90,7 +94,9 @@ export class Tab2Cmp {}
     Tab1Cmp,
     Tab2Cmp
   ],
+  // exports: [checkActivate],
    providers: [
+     {provide: 'CanActivateSettingsChild', useValue: checkActivate},
      TabResolver,
      {provide: TabService, useFactory: getTabService, deps: ['$injector']},
    ]
